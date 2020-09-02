@@ -6,7 +6,7 @@ URL = f"https://www.inflearn.com/courses/it-programming?order=seq&skill=javascri
 
 def get_last_page():
     result = requests.get(URL)
-    soup = BeautifulSoup(result.text, 'html.parser')
+    soup = BeautifulSoup(result.text, "html.parser")
     pagination = soup.find("div", {"class": "pagination_container"})
     links = pagination.find_all("a")
 
@@ -23,10 +23,10 @@ def extract_course(last_page):
     course = []
 
     for page in range(last_page):
-        page = page+1
+        page = page + 1
         # print(f'inflearn web Scrapping back Page : {page}')
-        result = requests.get(f'{URL}&page={page}')
-        soup = BeautifulSoup(result.text, 'html.parser')
+        result = requests.get(f"{URL}&page={page}")
+        soup = BeautifulSoup(result.text, "html.parser")
         results = soup.find_all("div", {"class": "course_card_back"})
 
         for result in results:
@@ -37,16 +37,15 @@ def extract_course(last_page):
 
 
 def extract_course_content(html):
-    description = html.find(
-        "p", {"class": "course_description"}).text
+    description = html.find("p", {"class": "course_description"}).text
     # .replace('\n', ' ').replace('\r', ' ').replace('\x01', ' ')
     level = html.find("div", {"class": "course_level"}).span.get_text()
     skills = html.find("div", {"class": "course_skills"}).span.get_text()
 
     return {
-        'description': description,
-        'level': level,
-        'skills': skills,
+        "description": description,
+        "level": level,
+        "skills": skills,
     }
 
 
