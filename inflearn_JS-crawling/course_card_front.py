@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from ast import literal_eval
 
-URL = f"https://www.inflearn.com/courses/it-programming?order=seq&skill=javascript"
+URL = f"https://www.inflearn.com/courses/it-programming?order=recent&skill=javascript"
 
 
 def get_last_page():
